@@ -5,23 +5,25 @@
             </h4>
             <div class="form-group" [ngClass]="{'invalid':emailInput.invalid && emailInput.touched }">
                 <label for="">E-mail Address</label>
-                <input #emailInput="ngModel" ngModel required class="form-control" type="text" name="email" id="">
+                <input #emailInput="ngModel" [(ngModel)]="person.email" required class="form-control" type="text" name="email" id="">
             </div>
             <div class="form-row">
                 <div class="form-group" [ngClass]="{'invalid':passInput.invalid && passInput.touched }">
                     <label for="">Password</label>
-                    <input #passInput="ngModel" ngModel required class="form-control" type="text" name="pass" id="">
+                    <input #passInput="ngModel" [(ngModel)]="person.password" required class="form-control" type="password"
+                      name="pass" id="">
                 </div>
                 <div class="form-group" [ngClass]="{'invalid':confirmPassInput.invalid && confirmPassInput.touched }">
                     <label for="">Re-enter Password</label>
-                    <input #confirmPassInput="ngModel" ngModel required class="form-control" type="text" name="confirmPass" id="">
+                    <input #confirmPassInput="ngModel" [(ngModel)]="person.repeatedPassword" required class="form-control"
+                      type="password" name="confirmPass" id="">
                 </div>
             </div>
 
             <div class="login__remember-me">
                 <div class="add-product__actions">
                     <button href="#" class="btn btn--gray">Cancel</button>
-                    <button href="#" class="btn btn--primary" [disabled]="registerForm.invalid">Register</button>
+                    <button (click)="onRegister()" class="btn btn--primary" [disabled]="registerForm.invalid">Register</button>
                 </div>
             </div>
             <a routerLink="/login" class="login__register-now">You are alredy a member?</a>

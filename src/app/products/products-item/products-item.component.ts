@@ -1,6 +1,7 @@
 import { ProductServices } from './../../_services/productServices.services';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Product } from 'src/app/_model/product';
+import { faTrash , faEye , faEdit } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-products-item',
@@ -10,6 +11,9 @@ import { Product } from 'src/app/_model/product';
 export class ProductsItemComponent implements OnInit {
   @Input() product:Product;
   //@Output() itemAdded= new EventEmitter<Product>()
+  remove=faTrash;
+  edit=faEdit;
+  eye= faEye;
   constructor(private ProductServices:ProductServices) {  }
 
   ngOnInit(): void {

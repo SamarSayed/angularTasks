@@ -16,6 +16,9 @@ import { AddProductComponent } from './products/add-product/add-product.componen
 import { FormsModule} from '@angular/forms';
 import { PaymentServices } from './_services/paymentServices.services';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { ProductsDetailsComponent } from './products/products-details/products-details.component';
+import { StringPipePipe } from './pipes/string-pipe.pipe';
+import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,15 +29,22 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     DropDownComponent,
     LoginComponent,
     SignUpComponent,
-    AddProductComponent
+    AddProductComponent,
+    ProductsDetailsComponent,
+    StringPipePipe
   ],
   imports: [
     BrowserModule,
     AppRoutersModule,
     FormsModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    HttpClientModule
   ],
-  providers: [ProductServices, PaymentServices,CategoryServices],
+  providers: [
+    ProductServices, 
+    PaymentServices,
+    CategoryServices,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,8 +1,8 @@
 <div *ngIf="product.discount" class="item-medium-1__alert">Sale</div>
-<div class="item-medium-1__image image" [style.backgroundImage]="'url('+product.imgsUrl[0]+')'">
-        <a (click)="addItem()" href="#" class="item-medium-1__action">Add to Cart</a>
+<div class="item-medium-1__image image" [style.backgroundImage]="'url('+product.imagesUrls[0]+')'">
+        <a (click)="addItem()" class="item-medium-1__action">Add to Cart</a>
     </div>
-    <a href="#">
+    <a>
         <h4>{{product.data[0].name}}</h4>
         <div>
             <del *ngIf="product.discount">{{product.price}}</del>
@@ -10,7 +10,7 @@
         </div>
     </a>
     <div class="crud-actions">
-        <a href="#"><i class="far fa-eye"></i></a>
-        <a href="#"><i class="fas fa-edit"></i></a>
-        <a href="#"><i class="fas fa-trash-alt"></i></a>
+        <fa-icon [icon]="eye" [routerLink]="['/product','details',product._id]"></fa-icon>
+        <fa-icon [icon]="edit" [routerLink]="['/product','edit',product._id]"></fa-icon>
+        <fa-icon [icon]="remove"></fa-icon>
     </div>
