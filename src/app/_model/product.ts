@@ -1,13 +1,14 @@
 import { Tag } from './tag';
 import { PaymentType } from './payment-type';
 import { ProductLang } from './product-lang';
+import { Category } from './category';
 export interface Product{
-    id?:number;
+    _id?:string;
     data?:ProductLang [];
     price?:number;
     discount?:number;
-    imgsUrl?:string[];
+    imagesUrls?:string[];
     paymentTypes?:PaymentType[];
-    category?:string;
+    category?:Category;
     tags?:Tag[];
 }

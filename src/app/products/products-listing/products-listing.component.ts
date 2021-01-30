@@ -10,31 +10,49 @@ import { faPlus ,faSearch } from '@fortawesome/free-solid-svg-icons';
 })
 export class ProductsListingComponent implements OnInit {
   @Output() addToCart= new EventEmitter<Product>()
-  products:Product[]
+  products:Product[]=[]
   pagesNumber:number[]=[];
   pageSize:number = 9;
   currentPage :number = 0;
   plus = faPlus ;
   searchIcon = faSearch;
+  productsLength:number;
   constructor(private ProductServices: ProductServices) { 
   }
 
   ngOnInit(): void {
-    this.products = this.ProductServices.getAllProducts();
-    this.calcPagesNum()
+    this.ProductServices.getAllProducts().subscribe(
+      (response) => {
+        this.products = response['product']
+        this.productsLength = response['numberOfProducts']
+        this.calcPagesNum(this.productsLength)
+      },
+      (err) => {
+        console.log(err)
+      },
+      () => { }
+    );
   }
 
-  calcPagesNum(){
+  calcPagesNum(productsLength){
     this.pagesNumber=[]
-    for (let index = 0; index < this.products.length / this.pageSize; index++) {
+    for (let index = 0; index < productsLength / this.pageSize; index++) {
       this.pagesNumber.push(index + 1)
     }
   }
 
   searchHandler(searchInput){
-    //console.log(searchInput.value)
-    this.products = this.ProductServices.productSearch(searchInput.value)
-    this.calcPagesNum()
+    this.ProductServices.getAllProducts().subscribe(
+      (response) => {
+        this.products = response["product"].filter(p => p.data[0].name.toLowerCase().includes(searchInput.value.toLowerCase()))
+        this.calcPagesNum(this.productsLength)
+      },
+      (err) => {
+        console.log(err)
+      },
+      () => { }
+    )
+    // console.log(this.products)
   }
 
 
