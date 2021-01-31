@@ -40,6 +40,11 @@ this.ProductServices.itemAddedToCart.subscribe(
 )
 }
   removeFromCart(index){
+    if (this.itemArr[index].discount) {
+      this.totalPrice = this.totalPrice - (this.itemArr[index].price - this.itemArr[index].discount)
+    }else{
+      this.totalPrice = this.totalPrice - this.itemArr[index].price
+    }
     this.itemArr.splice(index,1)
   }
 }
