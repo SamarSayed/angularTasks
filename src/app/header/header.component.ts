@@ -1,6 +1,7 @@
 import { ProductServices } from './../_services/productServices.services';
 import { Component, Input, OnChanges, OnInit } from '@angular/core';
 import { Product } from '../_model/product';
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-header',
@@ -13,6 +14,7 @@ export class HeaderComponent implements OnInit {
 
 itemArr: Product[] = [];
 totalPrice: number = 0;
+removeIcon=faTimes;
 
 constructor(private ProductServices : ProductServices) { }
 
@@ -37,4 +39,7 @@ this.ProductServices.itemAddedToCart.subscribe(
   }
 )
 }
+  removeFromCart(index){
+    this.itemArr.splice(index,1)
+  }
 }
