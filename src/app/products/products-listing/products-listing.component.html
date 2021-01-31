@@ -14,20 +14,7 @@
             <h5>Categories</h5>
             <!-- filter list -->
             <ul class="list list--vr-separator">
-                <li class="link list__item"><i class="link__icon fas fa-angle-right"></i>Arts & Crafts</li>
-                <li class="link list__item"><i class="link__icon fas fa-angle-right"></i>Automotive</li>
-                <li class="link list__item"><i class="link__icon fas fa-angle-right"></i>Baby</li>
-                <li class="link list__item"><i class="link__icon fas fa-angle-right"></i>Books</li>
-                <li class="link list__item"><i class="link__icon fas fa-angle-right"></i>Eletronics</li>
-                <li class="link list__item"><i class="link__icon fas fa-angle-right"></i>Women's Fashion</li>
-                <li class="link list__item"><i class="link__icon fas fa-angle-right"></i>Men's Fashion</li>
-                <li class="link list__item"><i class="link__icon fas fa-angle-right"></i>Health & Household</li>
-                <li class="link list__item"><i class="link__icon fas fa-angle-right"></i>Home & Kitchen</li>
-                <li class="link list__item"><i class="link__icon fas fa-angle-right"></i>Military Accessories</li>
-                <li class="link list__item"><i class="link__icon fas fa-angle-right"></i>Movies & Television</li>
-                <li class="link list__item"><i class="link__icon fas fa-angle-right"></i>Sports & Outdoors</li>
-                <li class="link list__item"><i class="link__icon fas fa-angle-right"></i>Tools & Home Improvement</li>
-                <li class="link list__item"><i class="link__icon fas fa-angle-right"></i>Toys & Games</li>
+                <li (click)="getProductsByCategory(category.id)" *ngFor="let category of categories" class="link list__item"><i class="link__icon fas fa-angle-right"></i>{{category.name}}</li>
             </ul>
         </div>
         <!-- filter tags -->
@@ -35,16 +22,18 @@
             <!-- filter header -->
             <h5>Tags</h5>
             <!-- filter tags -->
-            <div class="tags">
+            <div class="tags" >
                 <span class="tag">Nike</span>
                 <span class="tag">Travel</span>
                 <span class="tag">Sport</span>
                 <span class="tag">Tv</span>
                 <span class="tag">Books</span>
+                <br>
                 <span class="tag">Tech</span>
                 <span class="tag">Addidas</span>
                 <span class="tag">Promo</span>
                 <span class="tag">Reading</span>
+                <br>
                 <span class="tag">Social</span>
                 <span class="tag">New</span>
                 <span class="tag">Special</span>
@@ -66,13 +55,14 @@
     <section class="item-listing">
         <!-- tools (sorting , change view , exporting) -->
         <div class="item-listing__tools">
-            <select class="form-control" name="" id="">
-                <option value="1">Featured</option>
+            <select #sort="ngModel" (change)="sortProducts()" [(ngModel)]="sortOption" class="form-control" name=""
+              id="">
+                <option value="1" >Featured</option>
                 <option value="2">Price low to high</option>
                 <option value="3">Price high to low</option>
                 <option value="4">Name</option>
             </select>
-            <a class="action-btn" [routerLink]="['/product','add']">
+            <a *ngIf="buttonsView" class="action-btn" [routerLink]="['/product','add']">
                 <fa-icon [icon]="plus"></fa-icon>
             </a>
         </div>

@@ -11,4 +11,6 @@ export interface Product{
     paymentTypes?:PaymentType[];
     category?:Category;
     tags?:Tag[];
+    categoryId?:string,
+    createdAt?:Date
 }

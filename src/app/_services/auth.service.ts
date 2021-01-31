@@ -14,4 +14,12 @@ export class AuthService {
   register(person:Person){
    return this.httpClient.post(`${this.baseUrl}user/register`,person)
   }
+  isAuthenticated(){
+    const token = localStorage.getItem("token")
+    if(token){
+      return true
+    }else{
+      return false
+    }
+  }
 }

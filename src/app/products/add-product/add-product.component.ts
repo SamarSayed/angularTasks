@@ -39,17 +39,16 @@ export class AddProductComponent implements OnInit {
        },
       () => { },
     )
-    this.editMood = this.activatedRoute.snapshot.url[1] && this.activatedRoute.snapshot.url[1].path === "edit"
-
+    this.editMood = this.activatedRoute.snapshot.url[0] && this.activatedRoute.snapshot.url[0].path === "edit"
     if (this.editMood) {
       let id = this.activatedRoute.snapshot.params.id
       this.productService.getProductById(id).subscribe(
         (response) => {
           this.product = response
+          console.log(this.product["categoryId"])
           if (this.product.discount) {
             this.status = "OnSale"
           }
-          //console.log(this.product)
         },
         (err) => {
           console.log(err)

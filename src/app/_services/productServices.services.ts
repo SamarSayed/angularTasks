@@ -18,19 +18,18 @@ export class ProductServices {
         return this.httpClint.get(`${this.baseUrl}product/${_id}`)
     }
     addProduct(product: Product) {
-        const token = localStorage.getItem("token")
-        const headers = new HttpHeaders({
-            authorization:token
-        })
-        console.log(product)
+        // const token = localStorage.getItem("token")
+        // const headers = new HttpHeaders({
+        //     authorization:token
+        // })
         let newProduct = {
             discount: product.discount,
             price: product.price,
             data:product.data,
             imagesUrls:product.imagesUrls,
-            categoryId:product.category.id
+            categoryId: product.categoryId
         }
-       return this.httpClint.post(`${this.baseUrl}product/add`, newProduct, {headers})
+       return this.httpClint.post(`${this.baseUrl}product/add`, newProduct)
     }
 
     // updateProduct(product: Product) {

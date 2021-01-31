@@ -11,6 +11,6 @@
     </a>
     <div class="crud-actions">
         <fa-icon [icon]="eye" [routerLink]="['/product','details',product._id]"></fa-icon>
-        <fa-icon [icon]="edit" [routerLink]="['/product','edit',product._id]"></fa-icon>
-        <fa-icon [icon]="remove"></fa-icon>
+        <fa-icon *ngIf="buttonsView" [icon]="edit" [routerLink]="['/product','edit',product._id]"></fa-icon>
+        <fa-icon *ngIf="buttonsView" [icon]="remove"></fa-icon>
     </div>

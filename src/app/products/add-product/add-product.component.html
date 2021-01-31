@@ -34,9 +34,10 @@
                                     <label for="">Name</label>
                                     <input #nameInput="ngModel" required [(ngModel)]="product.data[0].name" class="form-control" type="text" name="name" id="">
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group" [ngClass]="{'invalid':descInput.invalid && descInput.touched }">
                                     <label for="">Description</label>
-                                    <textarea [(ngModel)]="product.data[0].description" class="form-control" name="description" id="" cols="30" rows="4"></textarea>
+                                    <textarea #descInput='ngModel' required [(ngModel)]="product.data[0].description"
+                                      class="form-control" name="description" id="" cols="30" rows="4"></textarea>
                                 </div>
                             </div>
                             <!-- <div class="tabs__body ">
@@ -52,9 +53,9 @@
                         </div>
                     </section>
 
-                    <div class="form-group">
+                    <div class="form-group" [ngClass]="{'invalid':priceInput.invalid && priceInput.touched }">
                         <label for="">Price</label>
-                        <input [(ngModel)]="product.price" class="form-control" type="text" name="price" id="">
+                        <input #priceInput='ngModel' required [(ngModel)]="product.price" class="form-control" type="text" name="price" id="">
                     </div>
                     <div class="add-product__discount">
                         <div class="form-group">
@@ -77,7 +78,7 @@
                     </div>
                     <div class="form-group">
                         <label for="">Category</label>
-                        <select [(ngModel)]="product.category.id" class="form-control" name="category" id="">
+                        <select [(ngModel)]="product.categoryId" class="form-control" name="category" id="">
                             <option *ngFor="let category of categories" [value]="category.id">{{category.name}}</option>
                         </select>
                     </div>
